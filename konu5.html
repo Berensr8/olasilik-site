@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konu 5 — Rassal Değişken Dönüşümleri</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <nav>
+    <span class="brand">📐 Olasılık</span>
+    <a href="index.html">Ana Menü</a>
+    <a href="konu1.html">1. Temel</a>
+    <a href="konu2.html">2. Bağımsız & Koşullu</a>
+    <a href="konu3.html">3. Ayrık Rassal</a>
+    <a href="konu4.html">4. Sürekli Rassal</a>
+    <a href="konu5.html" class="active">5. Dönüşümler</a>
+  </nav>
+
+  <div class="container">
+    <h1>Konu 5 — Rassal Değişken Dönüşümleri</h1>
+    <p class="subtitle">Bir rassal değişkenden yeni bir değişken türetme: Y = g(X)</p>
+
+    <h2>5.1 Dönüşüm Nedir?</h2>
+    <p>X rassal değişkeni biliniyorken, \(Y = g(X)\) şeklinde tanımlanan yeni bir Y değişkeninin dağılımını bulmaktır.</p>
+    <p><strong>Yazılım örnekleri:</strong></p>
+    <ul>
+      <li>X = günlük çökme sayısı → Y = 50X (bakım maliyeti TL)</li>
+      <li>X = hata sayısı → Y = X² (karesel maliyet fonksiyonu)</li>
+      <li>X = yanıt süresi → Y = 1/X (saniyede işlem sayısı)</li>
+    </ul>
+
+    <h2>5.2 Kesikli Dönüşüm — Yöntem</h2>
+    <ol>
+      <li>X değerlerini ve P(X=x) olasılıklarını yaz</li>
+      <li>Her X değeri için Y = g(X) hesapla</li>
+      <li>Aynı Y değerine gelen olasılıkları topla</li>
+      <li>Yeni Y dağılımından E(Y) ve V(Y) hesapla</li>
+    </ol>
+    <div class="formula-box">
+      \[ E(Y) = E[g(X)] = \sum_i g(x_i) \cdot P(X = x_i) \]
+    </div>
+    <p>Doğrusal dönüşüm için kısa yol: \(Y = aX + b\) ise</p>
+    <div class="formula-box">
+      \[ E(Y) = aE(X) + b \qquad V(Y) = a^2 V(X) \]
+    </div>
+
+    <h2>5.3 Sürekli Dönüşüm</h2>
+    <p>Doğrusal dönüşüm için aynı kısa yollar geçerlidir:</p>
+    <div class="formula-box">
+      \[ E(aX+b) = aE(X)+b \qquad V(aX+b) = a^2 V(X) \]
+    </div>
+    <p>Doğrusal olmayan dönüşümde: \(E[g(X)] = \int g(x) f(x)\,dx\)</p>
+
+    <h2>Çözümlü Sorular</h2>
+
+    <div class="question-block">
+      <div class="q-title">Soru 1 — Kesikli Dönüşüm (Bakım Maliyeti)</div>
+      <p>Günlük sunucu çökmesi sayısı X dağılımı:</p>
+      <table style="border-collapse:collapse;margin:0.5rem 0">
+        <tr style="background:#eff6ff">
+          <th style="padding:4px 12px;border:1px solid #bfdbfe">X</th>
+          <td style="padding:4px 12px;border:1px solid #bfdbfe">0</td>
+          <td style="padding:4px 12px;border:1px solid #bfdbfe">1</td>
+          <td style="padding:4px 12px;border:1px solid #bfdbfe">2</td>
+          <td style="padding:4px 12px;border:1px solid #bfdbfe">3</td>
+        </tr>
+        <tr>
+          <th style="padding:4px 12px;border:1px solid #bfdbfe">P(X=x)</th>
+          <td style="padding:4px 12px;border:1px solid #bfdbfe">0,30</td>
+          <td style="padding:4px 12px;border:1px solid #bfdbfe">0,40</td>
+          <td style="padding:4px 12px;border:1px solid #bfdbfe">0,20</td>
+          <td style="padding:4px 12px;border:1px solid #bfdbfe">0,10</td>
+        </tr>
+      </table>
+      <p>Her çökme 50 TL bakım maliyeti oluşturuyor: Y = 50X.</p>
+      <p>(a) Y dağılımı, (b) E(Y), (c) V(Y)</p>
+
+      <div class="step">
+        <span class="step-label">Adım 1 — Y dağılımı</span>
+        <table style="border-collapse:collapse;margin:0.4rem 0">
+          <tr style="background:#eff6ff">
+            <th style="padding:4px 12px;border:1px solid #bfdbfe">Y = 50X</th>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">0</td>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">50</td>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">100</td>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">150</td>
+          </tr>
+          <tr>
+            <th style="padding:4px 12px;border:1px solid #bfdbfe">P(Y=y)</th>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">0,30</td>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">0,40</td>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">0,20</td>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">0,10</td>
+          </tr>
+        </table>
+      </div>
+      <div class="step">
+        <span class="step-label">Adım 2 — E(Y) kısa yol ile</span>
+        Önce E(X): \(0(0{,}3)+1(0{,}4)+2(0{,}2)+3(0{,}1) = 0+0{,}4+0{,}4+0{,}3 = 1{,}1\)
+        \[E(Y) = 50 \cdot E(X) = 50 \times 1{,}1 = 55 \text{ TL}\]
+      </div>
+      <div class="step">
+        <span class="step-label">Adım 3 — V(Y)</span>
+        \(E(X^2) = 0+0{,}4+0{,}8+0{,}9 = 2{,}1\) &nbsp; \(V(X) = 2{,}1 - 1{,}1^2 = 2{,}1 - 1{,}21 = 0{,}89\)
+        \[V(Y) = 50^2 \cdot V(X) = 2500 \times 0{,}89 = 2225\]
+      </div>
+      <div class="step result">
+        <span class="step-label">Sonuç</span>
+        E(Y) = 55 TL &nbsp;|&nbsp; V(Y) = 2225
+      </div>
+    </div>
+
+    <div class="question-block">
+      <div class="q-title">Soru 2 — Sürekli Dönüşüm</div>
+      <p>Bir sistemin yanıt süresi X için \(f(x) = 2x,\; 0 \leq x \leq 1\).</p>
+      <p>Y = 3X + 1 (normalleştirilmiş skor). (a) E(Y) = ? &nbsp;&nbsp; (b) V(Y) = ?</p>
+
+      <div class="step">
+        <span class="step-label">Adım 1 — E(X) ve V(X) hesapla</span>
+        \[E(X) = \int_0^1 x \cdot 2x\,dx = 2\int_0^1 x^2\,dx = 2 \cdot \frac{1}{3} = \frac{2}{3}\]
+        \[E(X^2) = \int_0^1 x^2 \cdot 2x\,dx = 2\int_0^1 x^3\,dx = 2 \cdot \frac{1}{4} = \frac{1}{2}\]
+        \[V(X) = \frac{1}{2} - \left(\frac{2}{3}\right)^2 = \frac{1}{2} - \frac{4}{9} = \frac{1}{18}\]
+      </div>
+      <div class="step result">
+        <span class="step-label">Adım 2 — Kısa yol</span>
+        \[E(Y) = 3E(X) + 1 = 3 \cdot \frac{2}{3} + 1 = 2 + 1 = 3\]
+        \[V(Y) = 3^2 \cdot V(X) = 9 \cdot \frac{1}{18} = \frac{1}{2} = 0{,}5\]
+        ✔ E(Y) = 3 &nbsp;|&nbsp; V(Y) = 0,5
+      </div>
+    </div>
+
+    <div class="practice-section">
+      <h2>Pratik Sorular</h2>
+
+      <div class="practice-q">
+        <p><strong>Soru 1.</strong> X rassal değişkeninin dağılımı: P(X=0)=0,2, P(X=1)=0,5, P(X=2)=0,3.
+        Y = X² + 1 dönüşümü için E(Y)'yi hesapla.</p>
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          Y değerleri: X=0→Y=1, X=1→Y=2, X=2→Y=5<br>
+          \(E(Y) = 1(0{,}2) + 2(0{,}5) + 5(0{,}3) = 0{,}2 + 1{,}0 + 1{,}5 = 2{,}7\)
+        </div>
+      </div>
+
+      <div class="practice-q">
+        <p><strong>Soru 2.</strong> Herhangi bir X rassal değişkeni için E(X) = 4 ve V(X) = 2 olsun.
+        Y = 2X − 3 ise E(Y) ve V(Y) nedir?</p>
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          \(E(Y) = 2E(X) - 3 = 2(4) - 3 = 5\)<br>
+          \(V(Y) = 2^2 V(X) = 4 \times 2 = 8\)
+        </div>
+      </div>
+
+      <div class="practice-q">
+        <p><strong>Soru 3.</strong> X ~ Uniform[0,1], yani \(f(x) = 1\) için \(0 \leq x \leq 1\).
+        Y = 4X + 2 için E(Y) ve V(Y)'yi hesapla.</p>
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          \(E(X) = \int_0^1 x \cdot 1\,dx = \frac{1}{2}\)<br>
+          \(E(X^2) = \int_0^1 x^2\,dx = \frac{1}{3}\)<br>
+          \(V(X) = \frac{1}{3} - \left(\frac{1}{2}\right)^2 = \frac{1}{3} - \frac{1}{4} = \frac{1}{12}\)<br>
+          \(E(Y) = 4 \cdot \frac{1}{2} + 2 = 4\)<br>
+          \(V(Y) = 16 \cdot \frac{1}{12} = \frac{4}{3} \approx 1{,}33\)
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <a href="konu4.html">← Önceki Konu</a>
+      <a href="index.html">Ana Menüye Dön →</a>
+    </div>
+  </div>
+
+  <script>
+    function toggle(btn) {
+      const ans = btn.nextElementSibling;
+      if (ans.style.display === 'block') { ans.style.display = 'none'; btn.textContent = 'Cevabı Göster'; }
+      else { ans.style.display = 'block'; btn.textContent = 'Gizle'; }
+    }
+  </script>
+</body>
+</html>

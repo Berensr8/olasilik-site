@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konu 3 — Ayrık Rassal Değişkenler</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <nav>
+    <span class="brand">📐 Olasılık</span>
+    <a href="index.html">Ana Menü</a>
+    <a href="konu1.html">1. Temel</a>
+    <a href="konu2.html">2. Bağımsız & Koşullu</a>
+    <a href="konu3.html" class="active">3. Ayrık Rassal</a>
+    <a href="konu4.html">4. Sürekli Rassal</a>
+    <a href="konu5.html">5. Dönüşümler</a>
+  </nav>
+
+  <div class="container">
+    <h1>Konu 3 — Ayrık Rassal Değişkenler</h1>
+    <p class="subtitle">Sayılabilir değerler alan değişkenler, beklenen değer, varyans ve temel dağılımlar.</p>
+
+    <h2>3.1 Rassal Değişken Nedir?</h2>
+    <p>Deneyin her sonucuna bir sayı atayan fonksiyona <strong>rassal değişken</strong> denir. X ile gösterilir.</p>
+    <p><strong>Ayrık (kesikli) rassal değişken:</strong> Sayılabilir değerler alır (0, 1, 2, 3, …)</p>
+    <ul>
+      <li>Bir günde gelen destek talebi sayısı</li>
+      <li>5 testte başarısız olan login sayısı</li>
+      <li>Sunucu günlük çökme sayısı</li>
+    </ul>
+
+    <h2>3.2 Olasılık Fonksiyonu</h2>
+    <p>\(P(X = x)\) her değer için olasılık verir. İki koşul sağlanmalıdır:</p>
+    <div class="formula-box">
+      \[ P(X = x_i) \geq 0 \qquad \text{ve} \qquad \sum_i P(X = x_i) = 1 \]
+    </div>
+
+    <h2>3.3 Beklenen Değer (Ortalama)</h2>
+    <div class="formula-box">
+      \[ E(X) = \sum_i x_i \cdot P(X = x_i) \]
+    </div>
+    <p>Özellikler: \(E(aX + b) = aE(X) + b\)</p>
+
+    <h2>3.4 Varyans</h2>
+    <div class="formula-box">
+      \[ V(X) = E(X^2) - [E(X)]^2 \qquad \text{burada} \quad E(X^2) = \sum_i x_i^2 \cdot P(X = x_i) \]
+    </div>
+    <p>Özellik: \(V(aX + b) = a^2 V(X)\)</p>
+
+    <h2>3.5 Medyan</h2>
+    <p>En küçük m değeri ki \(P(X \leq m) \geq 0{,}5\)</p>
+
+    <h2>3.6 Binom Dağılımı — B(n, p)</h2>
+    <p>n bağımsız denemede her birinde başarı olasılığı p, X = başarı sayısı.</p>
+    <div class="formula-box">
+      \[ P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0,1,\ldots,n \]
+      \[ E(X) = np \qquad V(X) = np(1-p) \]
+    </div>
+
+    <h2>3.7 Geometrik Dağılım — G(p)</h2>
+    <p>İlk başarıya kadar deneme sayısı. X = ilk başarının gerçekleştiği deneme numarası.</p>
+    <div class="formula-box">
+      \[ P(X = k) = (1-p)^{k-1} \cdot p, \quad k = 1,2,3,\ldots \]
+      \[ E(X) = \frac{1}{p} \qquad V(X) = \frac{1-p}{p^2} \]
+    </div>
+
+    <h2>Çözümlü Sorular</h2>
+
+    <div class="question-block">
+      <div class="q-title">Soru 1 — c Sabiti, E(X), V(X), Medyan</div>
+      <p>Bir sistemde günlük sunucu çökmesi sayısı X. \(P(X=x) = cx\) ve \(x = 1,2,3,4\).</p>
+      <p>(a) c'yi bul. (b) Olasılık tablosunu yaz. (c) E(X) ve V(X) hesapla. (d) Medyanı bul.</p>
+
+      <div class="step">
+        <span class="step-label">Adım 1 — c'yi bul (toplam = 1)</span>
+        \[\sum P(X=x) = c + 2c + 3c + 4c = 10c = 1 \Rightarrow c = \frac{1}{10} = 0{,}1\]
+      </div>
+      <div class="step">
+        <span class="step-label">Adım 2 — Olasılık tablosu</span>
+        <table style="border-collapse:collapse;margin-top:0.4rem">
+          <tr style="background:#eff6ff">
+            <th style="padding:4px 12px;border:1px solid #bfdbfe">X</th>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">1</td>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">2</td>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">3</td>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">4</td>
+          </tr>
+          <tr>
+            <th style="padding:4px 12px;border:1px solid #bfdbfe">P(X=x)</th>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">0,1</td>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">0,2</td>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">0,3</td>
+            <td style="padding:4px 12px;border:1px solid #bfdbfe">0,4</td>
+          </tr>
+        </table>
+      </div>
+      <div class="step">
+        <span class="step-label">Adım 3 — E(X)</span>
+        \[E(X) = 1(0{,}1) + 2(0{,}2) + 3(0{,}3) + 4(0{,}4) = 0{,}1 + 0{,}4 + 0{,}9 + 1{,}6 = 3\]
+      </div>
+      <div class="step">
+        <span class="step-label">Adım 4 — V(X)</span>
+        \[E(X^2) = 1^2(0{,}1)+2^2(0{,}2)+3^2(0{,}3)+4^2(0{,}4) = 0{,}1+0{,}8+2{,}7+6{,}4 = 10\]
+        \[V(X) = 10 - 3^2 = 10 - 9 = 1\]
+      </div>
+      <div class="step result">
+        <span class="step-label">Adım 5 — Medyan</span>
+        \(P(X \leq 3) = 0{,}1+0{,}2+0{,}3 = 0{,}6 \geq 0{,}5\) ✔ &nbsp; \(P(X \leq 2) = 0{,}3 < 0{,}5\) ✗<br>
+        <strong>Medyan = 3</strong>
+      </div>
+    </div>
+
+    <div class="question-block">
+      <div class="q-title">Soru 2 — Binom Dağılımı</div>
+      <p>Bir sistemde kullanıcı girişi hata olasılığı 0,2. 10 deneme yapılıyor, X = başarısız giriş sayısı ~ B(10, 0,2).</p>
+      <p>(a) Tam 2 başarısızlık olasılığı? (b) En az 1 başarısızlık olasılığı?</p>
+
+      <div class="step">
+        <span class="step-label">Adım 1 — P(X = 2)</span>
+        \[P(X=2) = \binom{10}{2}(0{,}2)^2(0{,}8)^8 = 45 \times 0{,}04 \times 0{,}1678 \approx 0{,}302\]
+      </div>
+      <div class="step">
+        <span class="step-label">Adım 2 — P(X ≥ 1) tümleyen ile</span>
+        \[P(X \geq 1) = 1 - P(X=0) = 1 - (0{,}8)^{10} = 1 - 0{,}1074 \approx 0{,}893\]
+      </div>
+      <div class="step result">
+        <span class="step-label">Sonuç</span>
+        P(X=2) ≈ 0,302 &nbsp;|&nbsp; P(X≥1) ≈ 0,893
+      </div>
+    </div>
+
+    <div class="practice-section">
+      <h2>Pratik Sorular</h2>
+
+      <div class="practice-q">
+        <p><strong>Soru 1.</strong> X rassal değişkeninin dağılımı aşağıdaki gibi:</p>
+        <table style="border-collapse:collapse;margin:0.5rem 0">
+          <tr style="background:#eff6ff">
+            <th style="padding:3px 10px;border:1px solid #bfdbfe">X</th>
+            <td style="padding:3px 10px;border:1px solid #bfdbfe">0</td>
+            <td style="padding:3px 10px;border:1px solid #bfdbfe">1</td>
+            <td style="padding:3px 10px;border:1px solid #bfdbfe">2</td>
+            <td style="padding:3px 10px;border:1px solid #bfdbfe">3</td>
+          </tr>
+          <tr>
+            <th style="padding:3px 10px;border:1px solid #bfdbfe">P(X=x)</th>
+            <td style="padding:3px 10px;border:1px solid #bfdbfe">0,25</td>
+            <td style="padding:3px 10px;border:1px solid #bfdbfe">0,35</td>
+            <td style="padding:3px 10px;border:1px solid #bfdbfe">0,25</td>
+            <td style="padding:3px 10px;border:1px solid #bfdbfe">0,15</td>
+          </tr>
+        </table>
+        E(X), V(X) ve Medyan'ı hesapla.
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          \(E(X) = 0(0{,}25)+1(0{,}35)+2(0{,}25)+3(0{,}15) = 0+0{,}35+0{,}50+0{,}45 = 1{,}30\)<br>
+          \(E(X^2) = 0+0{,}35+1+1{,}35 = 2{,}70\)<br>
+          \(V(X) = 2{,}70 - 1{,}30^2 = 2{,}70 - 1{,}69 = 1{,}01\)<br>
+          Medyan: \(P(X \leq 1) = 0{,}60 \geq 0{,}5\) ✔ ve \(P(X \leq 0) = 0{,}25 < 0{,}5\) ✗ → <strong>Medyan = 1</strong>
+        </div>
+      </div>
+
+      <div class="practice-q">
+        <p><strong>Soru 2.</strong> Bir yazılım testinde her test bağımsız olarak %30 olasılıkla geçiyor. 5 test çalıştırılıyor.
+        (a) Tam 2 test geçme olasılığı? (b) En fazla 1 test geçme olasılığı?</p>
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          X ~ B(5, 0,3)<br>
+          (a) \(P(X=2) = \binom{5}{2}(0{,}3)^2(0{,}7)^3 = 10 \times 0{,}09 \times 0{,}343 \approx 0{,}309\)<br>
+          (b) \(P(X \leq 1) = P(X=0)+P(X=1) = (0{,}7)^5 + 5(0{,}3)(0{,}7)^4\)<br>
+          \(= 0{,}168 + 5(0{,}3)(0{,}2401) = 0{,}168 + 0{,}360 = 0{,}528\)
+        </div>
+      </div>
+
+      <div class="practice-q">
+        <p><strong>Soru 3.</strong> Bir e-posta spam filtresi her mesajı bağımsız olarak %40 olasılıkla spam olarak etiketliyor.
+        İlk spam mesajın 3. sırada gelme olasılığı nedir? (Geometrik dağılım)</p>
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          X ~ G(0,4), k=3<br>
+          \(P(X=3) = (1-0{,}4)^{3-1} \times 0{,}4 = (0{,}6)^2 \times 0{,}4 = 0{,}36 \times 0{,}4 = 0{,}144\)
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <a href="konu2.html">← Önceki Konu</a>
+      <a href="konu4.html">Sonraki Konu →</a>
+    </div>
+  </div>
+
+  <script>
+    function toggle(btn) {
+      const ans = btn.nextElementSibling;
+      if (ans.style.display === 'block') { ans.style.display = 'none'; btn.textContent = 'Cevabı Göster'; }
+      else { ans.style.display = 'block'; btn.textContent = 'Gizle'; }
+    }
+  </script>
+</body>
+</html>

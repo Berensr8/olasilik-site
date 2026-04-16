@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konu 2 — Bağımsız Olaylar & Koşullu Olasılık</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <nav>
+    <span class="brand">📐 Olasılık</span>
+    <a href="index.html">Ana Menü</a>
+    <a href="konu1.html">1. Temel</a>
+    <a href="konu2.html" class="active">2. Bağımsız & Koşullu</a>
+    <a href="konu3.html">3. Ayrık Rassal</a>
+    <a href="konu4.html">4. Sürekli Rassal</a>
+    <a href="konu5.html">5. Dönüşümler</a>
+  </nav>
+
+  <div class="container">
+    <h1>Konu 2 — Bağımsız Olaylar & Koşullu Olasılık</h1>
+    <p class="subtitle">İki olayın birbirini etkileyip etkilemediğini anlama ve koşullu olasılık hesabı.</p>
+
+    <h2>2.1 Bağımsız Olaylar</h2>
+    <p>A olayının gerçekleşmesi B'nin gerçekleşme olasılığını <strong>değiştirmiyorsa</strong> bu iki olay bağımsızdır.</p>
+    <div class="formula-box">
+      \[ A \perp B \iff P(A \cap B) = P(A) \cdot P(B) \]
+    </div>
+    <p><strong>Yazılım örneği:</strong> İki farklı veri merkezinin çökmesi. Altyapılar birbirinden bağımsızsa A ve B olayları bağımsızdır.</p>
+    <p>n bağımsız sistem için: \(P(A_1 \cap A_2 \cap \cdots \cap A_n) = P(A_1) \cdot P(A_2) \cdots P(A_n)\)</p>
+
+    <h2>2.2 Koşullu Olasılık</h2>
+    <p>B'nin gerçekleştiği <strong>bilindiğinde</strong> A'nın olasılığı:</p>
+    <div class="formula-box">
+      \[ P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \quad P(B) > 0 \]
+    </div>
+    <p>Not: A ve B bağımsızsa \(P(A \mid B) = P(A)\) olur — bilgi değer katmaz.</p>
+
+    <h2>2.3 Çarpım Kuralı</h2>
+    <div class="formula-box">
+      \[ P(A \cap B) = P(A \mid B) \cdot P(B) = P(B \mid A) \cdot P(A) \]
+    </div>
+
+    <h2>2.4 Toplam Olasılık Teoremi</h2>
+    <p>\(B_1, B_2, \ldots, B_n\) tüm örnek uzayı kapsayan ayrık olaylarsa:</p>
+    <div class="formula-box">
+      \[ P(A) = \sum_{i=1}^{n} P(A \mid B_i) \cdot P(B_i) \]
+    </div>
+
+    <h2>2.5 Bayes Teoremi</h2>
+    <div class="formula-box">
+      \[ P(B_j \mid A) = \frac{P(A \mid B_j) \cdot P(B_j)}{\sum_{i=1}^{n} P(A \mid B_i) \cdot P(B_i)} \]
+    </div>
+    <p><strong>Sezgisel anlatım:</strong> "A sonucunu gördükten sonra, bunun B_j'den kaynaklandığı olasılığı nedir?"</p>
+
+    <h2>Çözümlü Sorular</h2>
+
+    <div class="question-block">
+      <div class="q-title">Soru 1 — Bağımsız Sistemler</div>
+      <p>Bir şirketin iki ayrı veri merkezi var. Aylık çökme olasılıkları:</p>
+      <ul>
+        <li>Veri merkezi A: P(A) = 0,08</li>
+        <li>Veri merkezi B: P(B) = 0,12</li>
+      </ul>
+      <p>Sistemler birbirinden bağımsız. (a) İkisi aynı ay çökme, (b) en az biri çökme olasılıkları?</p>
+
+      <div class="step">
+        <span class="step-label">Adım 1 — İkisi aynı anda çökme</span>
+        Bağımsız olduğundan:
+        \[P(A \cap B) = P(A) \cdot P(B) = 0{,}08 \times 0{,}12 = 0{,}0096\]
+      </div>
+      <div class="step">
+        <span class="step-label">Adım 2 — En az biri çökme</span>
+        Tümleyen yöntemi daha kolay:
+        \[P(A \cup B) = 1 - P(A^c \cap B^c) = 1 - (1-0{,}08)(1-0{,}12)\]
+        \[= 1 - 0{,}92 \times 0{,}88 = 1 - 0{,}8096 = 0{,}1904\]
+      </div>
+      <div class="step result">
+        <span class="step-label">Sonuç</span>
+        Her ikisi: 0,0096 &nbsp;|&nbsp; En az biri: 0,1904
+      </div>
+    </div>
+
+    <div class="question-block">
+      <div class="q-title">Soru 2 — Koşullu Olasılık (CI Pipeline)</div>
+      <p>Son 10.000 pipeline çalışması inceleniyor:</p>
+      <ul>
+        <li>F = "flaky test nedeniyle kırılma": P(F) = 0,10</li>
+        <li>U = "unit test aşamasında kırılma": P(U) = 0,15</li>
+        <li>Her ikisi birden: P(F ∩ U) = 0,03</li>
+      </ul>
+      <p>(a) Unit test kırılması biliniyorsa bunun flaky testden kaynaklanma olasılığı?</p>
+      <p>(b) F ve U bağımsız mı?</p>
+
+      <div class="step">
+        <span class="step-label">Adım 1 — Koşullu olasılık formülünü uygula</span>
+        \[P(F \mid U) = \frac{P(F \cap U)}{P(U)} = \frac{0{,}03}{0{,}15} = 0{,}20\]
+      </div>
+      <div class="step">
+        <span class="step-label">Adım 2 — Bağımsızlık kontrolü</span>
+        Bağımsız olsaydı: \(P(F) \cdot P(U) = 0{,}10 \times 0{,}15 = 0{,}015\)
+        Ama \(P(F \cap U) = 0{,}03 \neq 0{,}015\)
+      </div>
+      <div class="step result">
+        <span class="step-label">Sonuç</span>
+        P(F|U) = 0,20 &nbsp;|&nbsp; Olaylar bağımsız DEĞİL (flaky test unit kırılmasını artırıyor)
+      </div>
+    </div>
+
+    <div class="practice-section">
+      <h2>Pratik Sorular</h2>
+
+      <div class="practice-q">
+        <p><strong>Soru 1.</strong> 3 mikroservis bağımsız çalışıyor. Hata olasılıkları: A=0,10, B=0,15, C=0,20.
+        (a) Hiçbirinde hata olmama olasılığı? (b) En az birinde hata olma olasılığı?</p>
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          (a) \(P(A^c \cap B^c \cap C^c) = 0{,}90 \times 0{,}85 \times 0{,}80 = 0{,}612\)<br>
+          (b) \(P(\text{en az biri}) = 1 - 0{,}612 = 0{,}388\)
+        </div>
+      </div>
+
+      <div class="practice-q">
+        <p><strong>Soru 2.</strong> P(A) = 0,40, P(B) = 0,30, P(A ∩ B) = 0,12. A ve B bağımsız mı?
+        Bağımsızsa P(A|B)'yi hesapla, bağımsız değilse P(A|B) ne olur?</p>
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          \(P(A) \cdot P(B) = 0{,}40 \times 0{,}30 = 0{,}12 = P(A \cap B)\) ✔ <strong>Bağımsız!</strong><br>
+          \(P(A \mid B) = \frac{0{,}12}{0{,}30} = 0{,}40 = P(A)\) — doğrulama: bağımsızlıkta koşul değiştirmez.
+        </div>
+      </div>
+
+      <div class="practice-q">
+        <p><strong>Soru 3 — Bayes.</strong> Bir yazılım şirketinde iki takım var: Takım A kodun %60'ını, Takım B %40'ını yazıyor.
+        A'nın ürettiği kodda bug olasılığı 0,05; B'ninki için 0,08.
+        Rastgele seçilen bir kod parçasında bug bulundu. Bu kodun Takım B'den gelme olasılığı nedir?</p>
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          \(P(\text{bug}) = 0{,}05 \times 0{,}60 + 0{,}08 \times 0{,}40 = 0{,}030 + 0{,}032 = 0{,}062\)<br>
+          \(P(B \mid \text{bug}) = \frac{0{,}08 \times 0{,}40}{0{,}062} = \frac{0{,}032}{0{,}062} \approx 0{,}516\)
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <a href="konu1.html">← Önceki Konu</a>
+      <a href="konu3.html">Sonraki Konu →</a>
+    </div>
+  </div>
+
+  <script>
+    function toggle(btn) {
+      const ans = btn.nextElementSibling;
+      if (ans.style.display === 'block') { ans.style.display = 'none'; btn.textContent = 'Cevabı Göster'; }
+      else { ans.style.display = 'block'; btn.textContent = 'Gizle'; }
+    }
+  </script>
+</body>
+</html>

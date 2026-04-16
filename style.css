@@ -1,0 +1,172 @@
+/* style.css */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #f8fafc;
+  color: #1e293b;
+  line-height: 1.7;
+}
+
+/* ── NAVBAR ── */
+nav {
+  background: #1e40af;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+nav a {
+  color: #bfdbfe;
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+nav a:hover { background: rgba(255,255,255,0.15); color: #fff; }
+nav a.active { background: #fff; color: #1e40af; font-weight: 700; }
+nav .brand { color: #fff; font-weight: 700; font-size: 1rem; margin-right: 1rem; }
+
+/* ── SAYFA İÇERİĞİ ── */
+.container { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+h1 { font-size: 1.8rem; color: #1e40af; margin-bottom: 0.4rem; }
+h2 { font-size: 1.3rem; color: #1e40af; margin: 2rem 0 0.8rem; border-left: 4px solid #2563eb; padding-left: 0.75rem; }
+h3 { font-size: 1.05rem; color: #334155; margin: 1.4rem 0 0.5rem; }
+p  { margin-bottom: 0.8rem; }
+ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+li { margin-bottom: 0.3rem; }
+
+.subtitle { color: #64748b; font-size: 1rem; margin-bottom: 2rem; }
+
+/* ── FORMÜL KUTUSU ── */
+.formula-box {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+/* ── ÇÖZÜMLÜ SORU ── */
+.question-block {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+.question-block .q-title {
+  font-weight: 700;
+  color: #1e40af;
+  font-size: 1rem;
+  margin-bottom: 0.75rem;
+}
+.step {
+  border-left: 3px solid #2563eb;
+  background: #f8fafc;
+  border-radius: 0 6px 6px 0;
+  padding: 0.6rem 0.9rem;
+  margin: 0.6rem 0;
+  font-size: 0.95rem;
+}
+.step .step-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #2563eb;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+.step.result {
+  border-left-color: #16a34a;
+  background: #f0fdf4;
+}
+.step.result .step-label { color: #16a34a; }
+
+/* ── PRATİK SORULAR ── */
+.practice-section { margin-top: 2.5rem; }
+.practice-q {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1rem 0;
+}
+.practice-q p { margin-bottom: 0.5rem; }
+.toggle-btn {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+  transition: background 0.15s;
+}
+.toggle-btn:hover { background: #1d4ed8; }
+.answer {
+  display: none;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: #f0fdf4;
+  border-left: 3px solid #16a34a;
+  border-radius: 0 6px 6px 0;
+  font-size: 0.95rem;
+}
+
+/* ── NAVİGASYON BUTONLARI ── */
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+}
+.page-nav a {
+  display: inline-block;
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: background 0.15s;
+}
+.page-nav a:hover { background: #1d4ed8; }
+.page-nav a.disabled { background: #94a3b8; pointer-events: none; }
+
+/* ── INDEX KARTLARI ── */
+.hero { text-align: center; padding: 3rem 1rem 1.5rem; }
+.hero h1 { font-size: 2.2rem; }
+.hero p { color: #64748b; font-size: 1.1rem; max-width: 560px; margin: 0.5rem auto 0; }
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+.card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: #1e293b;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.card:hover { box-shadow: 0 4px 16px rgba(37,99,235,0.15); transform: translateY(-2px); }
+.card .num { font-size: 1.8rem; font-weight: 800; color: #2563eb; }
+.card h3 { font-size: 1rem; margin: 0.3rem 0 0.5rem; color: #1e293b; }
+.card p { font-size: 0.85rem; color: #64748b; margin: 0; }
+
+@media (max-width: 600px) {
+  nav { gap: 0.3rem; }
+  nav a { font-size: 0.78rem; padding: 0.25rem 0.5rem; }
+  h1 { font-size: 1.4rem; }
+}

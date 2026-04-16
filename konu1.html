@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konu 1 — Temel Olasılık</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <nav>
+    <span class="brand">📐 Olasılık</span>
+    <a href="index.html">Ana Menü</a>
+    <a href="konu1.html" class="active">1. Temel</a>
+    <a href="konu2.html">2. Bağımsız & Koşullu</a>
+    <a href="konu3.html">3. Ayrık Rassal</a>
+    <a href="konu4.html">4. Sürekli Rassal</a>
+    <a href="konu5.html">5. Dönüşümler</a>
+  </nav>
+
+  <div class="container">
+    <h1>Konu 1 — Temel Olasılık</h1>
+    <p class="subtitle">Örnek uzay, olaylar ve temel olasılık kuralları.</p>
+
+    <h2>1.1 Temel Kavramlar</h2>
+    <p><strong>Deney:</strong> Sonucu önceden kesin olarak bilinmeyen işlemlere <em>rastlantısal deney</em> denir. Örneğin: bir zar atmak, yazılım testini çalıştırmak, bir API isteği göndermek.</p>
+    <p><strong>Örnek Uzay (Ω):</strong> Deneyin olası tüm sonuçlarının kümesidir.</p>
+    <ul>
+      <li>Zar atma: \(\Omega = \{1,2,3,4,5,6\}\)</li>
+      <li>Yazılım testi: \(\Omega = \{\text{pass}, \text{fail}, \text{error}\}\)</li>
+      <li>HTTP yanıt kodu: \(\Omega = \{200, 201, 400, 404, 500\}\)</li>
+    </ul>
+    <p><strong>Olay (A):</strong> Örnek uzayın bir alt kümesidir. \(A \subseteq \Omega\)</p>
+
+    <h2>1.2 Küme İşlemleri</h2>
+    <p>Olaylar kümeler gibi işlenir:</p>
+    <ul>
+      <li><strong>Birleşim:</strong> \(A \cup B\) — A veya B gerçekleşir (ya da ikisi birden)</li>
+      <li><strong>Kesişim:</strong> \(A \cap B\) — A ve B birlikte gerçekleşir</li>
+      <li><strong>Tümleyen:</strong> \(A^c\) — A gerçekleşmez</li>
+      <li><strong>Ayrık (Bağdaşmaz) Olaylar:</strong> \(A \cap B = \emptyset\) — aynı anda olamaz</li>
+    </ul>
+
+    <h2>1.3 Olasılık Tanımı ve Aksiyomlar</h2>
+    <p><strong>Klasik olasılık</strong> (eşit olası sonuçlar için):</p>
+    <div class="formula-box">
+      \[ P(A) = \frac{|A|}{|\Omega|} \]
+    </div>
+    <p>Her olasılık 0 ile 1 arasındadır: \(0 \leq P(A) \leq 1\)</p>
+    <p>Kesin olay: \(P(\Omega) = 1\), imkânsız olay: \(P(\emptyset) = 0\)</p>
+    <p>Tümleyen kuralı: \(P(A^c) = 1 - P(A)\)</p>
+
+    <h2>1.4 Toplama Kuralı</h2>
+    <div class="formula-box">
+      \[ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]
+    </div>
+    <p>Olaylar ayrıksa (\(A \cap B = \emptyset\)): \(P(A \cup B) = P(A) + P(B)\)</p>
+
+    <h2>Çözümlü Sorular</h2>
+
+    <div class="question-block">
+      <div class="q-title">Soru 1 — Örnek Uzay ve Olay Olasılığı</div>
+      <p>Bir web uygulamasında her istek şu HTTP durum kodlarından birini döndürüyor:
+      \(\Omega = \{200, 201, 400, 404, 500\}\) ve her kod eşit olasılıklı.</p>
+      <p>A = "hata kodu döner" = \(\{400, 404, 500\}\), B = "sunucu hatası" = \(\{500\}\).</p>
+      <p>(a) P(A) = ? &nbsp;&nbsp; (b) P(B) = ? &nbsp;&nbsp; (c) P(A ∪ B) = ? &nbsp;&nbsp; (d) \(P(A^c)\) = ?</p>
+
+      <div class="step">
+        <span class="step-label">Adım 1 — P(A) hesapla</span>
+        \(|A| = 3,\quad |\Omega| = 5\)
+        \[P(A) = \frac{3}{5} = 0{,}60\]
+      </div>
+      <div class="step">
+        <span class="step-label">Adım 2 — P(B) hesapla</span>
+        \(|B| = 1\)
+        \[P(B) = \frac{1}{5} = 0{,}20\]
+      </div>
+      <div class="step">
+        <span class="step-label">Adım 3 — P(A ∪ B) hesapla</span>
+        \(B \subseteq A\) olduğundan \(A \cap B = B\), yani \(P(A \cap B) = 0{,}20\)
+        \[P(A \cup B) = 0{,}60 + 0{,}20 - 0{,}20 = 0{,}60\]
+      </div>
+      <div class="step result">
+        <span class="step-label">Adım 4 — Tümleyen</span>
+        \[P(A^c) = 1 - 0{,}60 = 0{,}40\]
+        ✔ Sonuçlar: P(A)=0,60 · P(B)=0,20 · P(A∪B)=0,60 · P(Aᶜ)=0,40
+      </div>
+    </div>
+
+    <div class="question-block">
+      <div class="q-title">Soru 2 — Toplama Kuralı Uygulaması</div>
+      <p>Bir CI/CD sisteminde test aşamasında iki tür uyarı üretiliyor.</p>
+      <p>A = "lint uyarısı" ile P(A) = 0,70 &nbsp;&nbsp; B = "güvenlik uyarısı" ile P(B) = 0,40</p>
+      <p>Her iki uyarının aynı anda çıkma olasılığı: P(A ∩ B) = 0,25</p>
+      <p>(a) En az bir uyarı çıkma olasılığı P(A ∪ B) = ?</p>
+      <p>(b) Hiçbir uyarı çıkmama olasılığı = ?</p>
+
+      <div class="step">
+        <span class="step-label">Adım 1 — Toplama Kuralını Uygula</span>
+        \[P(A \cup B) = P(A) + P(B) - P(A \cap B)\]
+        \[= 0{,}70 + 0{,}40 - 0{,}25 = 0{,}85\]
+      </div>
+      <div class="step result">
+        <span class="step-label">Adım 2 — Tümleyen</span>
+        \[P(\text{hiçbir uyarı yok}) = 1 - P(A \cup B) = 1 - 0{,}85 = 0{,}15\]
+        ✔ Sonuç: P(A∪B) = 0,85 · P(uyarısız) = 0,15
+      </div>
+    </div>
+
+    <div class="practice-section">
+      <h2>Pratik Sorular</h2>
+
+      <div class="practice-q">
+        <p><strong>Soru 1.</strong> Bir yazılım testinde \(\Omega = \{\text{pass, fail, error, timeout}\}\) ve her sonuç eşit olasılıklı.
+        A = {pass}, B = {pass, error} ise P(A), P(B) ve P(A ∪ B)'yi bulun.</p>
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          \(|\Omega|=4\)<br>
+          \(P(A) = \frac{1}{4} = 0{,}25\)<br>
+          \(P(B) = \frac{2}{4} = 0{,}50\)<br>
+          \(A \cap B = \{\text{pass}\} \Rightarrow P(A \cap B) = 0{,}25\)<br>
+          \(P(A \cup B) = 0{,}25 + 0{,}50 - 0{,}25 = 0{,}50\)
+        </div>
+      </div>
+
+      <div class="practice-q">
+        <p><strong>Soru 2.</strong> P(A) = 0,65, P(B) = 0,45, P(A ∩ B) = 0,30 ise P(A ∪ B) ve \(P(A^c \cap B^c)\) nedir?</p>
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          \(P(A \cup B) = 0{,}65 + 0{,}45 - 0{,}30 = 0{,}80\)<br>
+          \(P(A^c \cap B^c) = P((A \cup B)^c) = 1 - 0{,}80 = 0{,}20\)
+        </div>
+      </div>
+
+      <div class="practice-q">
+        <p><strong>Soru 3.</strong> Bir sunucuya gelen isteklerin %35'i GET, %45'i POST. GET ve POST aynı anda gelemez (ayrık olaylar).
+        İsteğin GET ya da POST olma olasılığı nedir? GET olmama olasılığı nedir?</p>
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          Ayrık olaylar: \(P(GET \cup POST) = 0{,}35 + 0{,}45 = 0{,}80\)<br>
+          \(P(GET^c) = 1 - 0{,}35 = 0{,}65\)
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <a href="index.html">← Ana Menü</a>
+      <a href="konu2.html">Sonraki Konu →</a>
+    </div>
+  </div>
+
+  <script>
+    function toggle(btn) {
+      const ans = btn.nextElementSibling;
+      if (ans.style.display === 'block') {
+        ans.style.display = 'none';
+        btn.textContent = 'Cevabı Göster';
+      } else {
+        ans.style.display = 'block';
+        btn.textContent = 'Gizle';
+      }
+    }
+  </script>
+</body>
+</html>

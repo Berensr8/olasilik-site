@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Konu 4 — Sürekli Rassal Değişkenler</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <nav>
+    <span class="brand">📐 Olasılık</span>
+    <a href="index.html">Ana Menü</a>
+    <a href="konu1.html">1. Temel</a>
+    <a href="konu2.html">2. Bağımsız & Koşullu</a>
+    <a href="konu3.html">3. Ayrık Rassal</a>
+    <a href="konu4.html" class="active">4. Sürekli Rassal</a>
+    <a href="konu5.html">5. Dönüşümler</a>
+  </nav>
+
+  <div class="container">
+    <h1>Konu 4 — Sürekli Rassal Değişkenler</h1>
+    <p class="subtitle">Sonsuz sayıda değer alabilen değişkenler, PDF, CDF ve integral hesabı.</p>
+
+    <h2>4.1 Sürekli Rassal Değişken</h2>
+    <p>Belirli bir aralıkta sonsuz sayıda değer alabilen değişkenlerdir.</p>
+    <p><strong>Yazılım örnekleri:</strong></p>
+    <ul>
+      <li>API yanıt süresi: X ∈ [0, ∞) ms</li>
+      <li>Sunucu CPU kullanımı: X ∈ [0, 100] %</li>
+      <li>Ağ gecikme süresi: X ∈ [0, ∞) ms</li>
+    </ul>
+    <p>Sürekli değişkende <strong>tek bir noktanın olasılığı sıfırdır</strong>: \(P(X = a) = 0\)</p>
+
+    <h2>4.2 Olasılık Yoğunluk Fonksiyonu (PDF)</h2>
+    <p>\(f(x)\) fonksiyonu şu koşulları sağlamalı:</p>
+    <div class="formula-box">
+      \[ f(x) \geq 0 \qquad \text{ve} \qquad \int_{-\infty}^{\infty} f(x)\,dx = 1 \]
+    </div>
+    <p>Aralık olasılığı:</p>
+    <div class="formula-box">
+      \[ P(a \leq X \leq b) = \int_a^b f(x)\,dx \]
+    </div>
+
+    <h2>4.3 Kümülatif Dağılım Fonksiyonu (CDF)</h2>
+    <div class="formula-box">
+      \[ F(x) = P(X \leq x) = \int_{-\infty}^{x} f(t)\,dt \]
+    </div>
+    <p><strong>CDF özellikleri:</strong></p>
+    <ul>
+      <li>\(0 \leq F(x) \leq 1\) her x için</li>
+      <li>Artan fonksiyon: \(x_1 < x_2 \Rightarrow F(x_1) \leq F(x_2)\)</li>
+      <li>\(\lim_{x \to -\infty} F(x) = 0\) ve \(\lim_{x \to +\infty} F(x) = 1\)</li>
+      <li>Aralık: \(P(a \leq X \leq b) = F(b) - F(a)\)</li>
+    </ul>
+
+    <h2>4.4 Beklenen Değer</h2>
+    <div class="formula-box">
+      \[ E(X) = \int_{-\infty}^{\infty} x \cdot f(x)\,dx \]
+    </div>
+
+    <h2>4.5 Varyans</h2>
+    <div class="formula-box">
+      \[ V(X) = E(X^2) - [E(X)]^2 \qquad \text{burada} \quad E(X^2) = \int_{-\infty}^{\infty} x^2 f(x)\,dx \]
+    </div>
+
+    <h2>4.6 Medyan</h2>
+    <div class="formula-box">
+      \[ F(m) = P(X \leq m) = 0{,}5 \]
+    </div>
+
+    <h2>Çözümlü Sorular</h2>
+
+    <div class="question-block">
+      <div class="q-title">Soru 1 — c Sabiti ve Alan Hesabı</div>
+      <p>Bir API'nin yanıt süresi (saniye) için \(f(x) = cx^2,\; 0 \leq x \leq 2\) ve diğer yerlerde 0.</p>
+      <p>(a) c = ? &nbsp;&nbsp; (b) P(0,5 ≤ X ≤ 1,5) = ?</p>
+
+      <div class="step">
+        <span class="step-label">Adım 1 — c'yi bul (∫f(x)dx = 1)</span>
+        \[\int_0^2 cx^2\,dx = c\left[\frac{x^3}{3}\right]_0^2 = c \cdot \frac{8}{3} = 1 \Rightarrow c = \frac{3}{8}\]
+      </div>
+      <div class="step">
+        <span class="step-label">Adım 2 — P(0,5 ≤ X ≤ 1,5)</span>
+        \[P(0{,}5 \leq X \leq 1{,}5) = \int_{0{,}5}^{1{,}5} \frac{3}{8}x^2\,dx = \frac{3}{8}\left[\frac{x^3}{3}\right]_{0{,}5}^{1{,}5}\]
+        \[= \frac{1}{8}\left[(1{,}5)^3 - (0{,}5)^3\right] = \frac{1}{8}[3{,}375 - 0{,}125] = \frac{3{,}25}{8} \approx 0{,}406\]
+      </div>
+      <div class="step result">
+        <span class="step-label">Sonuç</span>
+        c = 3/8 &nbsp;|&nbsp; P(0,5 ≤ X ≤ 1,5) ≈ 0,406
+      </div>
+    </div>
+
+    <div class="question-block">
+      <div class="q-title">Soru 2 — E(X), V(X) ve Medyan</div>
+      <p>Bir sunucunun işlem süresi için \(f(x) = 3x^2,\; 0 \leq x \leq 1\).</p>
+      <p>(a) E(X) = ? &nbsp;&nbsp; (b) V(X) = ? &nbsp;&nbsp; (c) Medyan = ?</p>
+
+      <div class="step">
+        <span class="step-label">Adım 1 — E(X)</span>
+        \[E(X) = \int_0^1 x \cdot 3x^2\,dx = 3\int_0^1 x^3\,dx = 3\left[\frac{x^4}{4}\right]_0^1 = \frac{3}{4} = 0{,}75\]
+      </div>
+      <div class="step">
+        <span class="step-label">Adım 2 — E(X²)</span>
+        \[E(X^2) = \int_0^1 x^2 \cdot 3x^2\,dx = 3\int_0^1 x^4\,dx = 3\left[\frac{x^5}{5}\right]_0^1 = \frac{3}{5} = 0{,}6\]
+      </div>
+      <div class="step">
+        <span class="step-label">Adım 3 — V(X)</span>
+        \[V(X) = 0{,}6 - (0{,}75)^2 = 0{,}6 - 0{,}5625 = 0{,}0375\]
+      </div>
+      <div class="step result">
+        <span class="step-label">Adım 4 — Medyan (F(m) = 0,5)</span>
+        \[F(m) = \int_0^m 3x^2\,dx = [x^3]_0^m = m^3 = 0{,}5 \Rightarrow m = \sqrt[3]{0{,}5} \approx 0{,}794\]
+        ✔ E(X)=0,75 | V(X)=0,0375 | Medyan≈0,794
+      </div>
+    </div>
+
+    <div class="practice-section">
+      <h2>Pratik Sorular</h2>
+
+      <div class="practice-q">
+        <p><strong>Soru 1.</strong> \(f(x) = kx,\; 0 \leq x \leq 2\). (a) k'yı bul. (b) E(X)'i hesapla. (c) P(1 ≤ X ≤ 2) nedir?</p>
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          (a) \(\int_0^2 kx\,dx = k\cdot 2 = 1 \Rightarrow k = \frac{1}{2}\)<br>
+          (b) \(E(X) = \int_0^2 x \cdot \frac{x}{2}\,dx = \frac{1}{2}\int_0^2 x^2\,dx = \frac{1}{2} \cdot \frac{8}{3} = \frac{4}{3} \approx 1{,}33\)<br>
+          (c) \(\int_1^2 \frac{x}{2}\,dx = \frac{1}{2}\left[\frac{x^2}{2}\right]_1^2 = \frac{1}{4}(4-1) = \frac{3}{4} = 0{,}75\)
+        </div>
+      </div>
+
+      <div class="practice-q">
+        <p><strong>Soru 2.</strong> \(f(x) = 2x,\; 0 \leq x \leq 1\). P(0,3 ≤ X ≤ 0,7) ve Medyanı bul.</p>
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          \(P(0{,}3 \leq X \leq 0{,}7) = \int_{0{,}3}^{0{,}7} 2x\,dx = [x^2]_{0{,}3}^{0{,}7} = 0{,}49 - 0{,}09 = 0{,}40\)<br>
+          Medyan: \(F(m) = m^2 = 0{,}5 \Rightarrow m = \sqrt{0{,}5} \approx 0{,}707\)
+        </div>
+      </div>
+
+      <div class="practice-q">
+        <p><strong>Soru 3.</strong> \(f(x) = 4x^3,\; 0 \leq x \leq 1\). E(X), V(X) ve CDF F(x)'i bul.</p>
+        <button class="toggle-btn" onclick="toggle(this)">Cevabı Göster</button>
+        <div class="answer">
+          \(E(X) = \int_0^1 x \cdot 4x^3\,dx = 4\int_0^1 x^4\,dx = 4/5 = 0{,}8\)<br>
+          \(E(X^2) = \int_0^1 x^2 \cdot 4x^3\,dx = 4\int_0^1 x^5\,dx = 4/6 = 2/3\)<br>
+          \(V(X) = 2/3 - (4/5)^2 = 2/3 - 16/25 = 50/75 - 48/75 = 2/75 \approx 0{,}027\)<br>
+          \(F(x) = \int_0^x 4t^3\,dt = x^4\)
+        </div>
+      </div>
+    </div>
+
+    <div class="page-nav">
+      <a href="konu3.html">← Önceki Konu</a>
+      <a href="konu5.html">Sonraki Konu →</a>
+    </div>
+  </div>
+
+  <script>
+    function toggle(btn) {
+      const ans = btn.nextElementSibling;
+      if (ans.style.display === 'block') { ans.style.display = 'none'; btn.textContent = 'Cevabı Göster'; }
+      else { ans.style.display = 'block'; btn.textContent = 'Gizle'; }
+    }
+  </script>
+</body>
+</html>
